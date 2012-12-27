@@ -1,0 +1,44 @@
+.disappear{
+	display: none;
+}
+
+.small{
+	width: 600px;
+	margin-left: 90px;	
+}
+
+.big{
+	width: 1100px;
+	margin: 0px auto;
+}
+
+#navi{	
+	display: block;
+	background: skyblue;
+	height: 40px;
+}
+
+#navi li{
+	float: left;
+	padding: 5px;
+	margin: 5px;
+	
+}
+
+#navi a{
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+p.hello{
+	margin-left: 820px;
+}
+
+h3{
+	margin-left: 90px;	
+}
+
+.controls input{
+	height: 30px;
+}

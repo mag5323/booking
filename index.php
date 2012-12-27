@@ -1,42 +1,48 @@
-<!DOCTYPE>
-<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="zh-TW">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	<link type="text/css" rel="stylesheet" media="screen" href="script/reset.css" />
-	<link type="text/css" rel="stylesheet" media="screen" href="bootstrap/css/bootstrap.css" />
-	<title>Booking System</title>
-</head>
-
-<body>	
-	<form method="post" class="form-horizontal" action="login.php?redirect=">
-
-		<fieldset>
-			<legend>Login</legend>
+<?php
+	require("/function/PDO.php");		//連結資料庫
+	require("/function/function.php");	//時間,session設定
+	
+	/*Sign up*/
+	if(isset($_POST['signup'])){
+		if(!empty($_POST['account']) AND !empty($_POST['password']) AND !empty($_POST['name'])){
+			sql_i("INSERT INTO users VALUES(?,?,?)", array($_POST['account'], md5($_POST['password']), $_POST['name']));
+		}		
+	}
+	
+	/*Login*/
+	if(isset($_POST['login'])){
+		if(!empty($_POST['account']) AND !empty($_POST['password'])){
+			$success = true;
 			
-			<div class="control-group">
-				<label for="account" class="control-label">UserID</label>						
-				
-				<div class="controls">
-					<input type="text" class="input-small" placeholder="Account" name="account" />					
-				</div><!--end of .controls-->					
-				
-			</div><!--end of .control-group-->
+			$users = sql_q("SELECT * FROM users WHERE account = ?", array($_POST['account']));	
 			
-			<div class="control-group">
-				<label for="password" class="control-label">Password</label>							
-				
-				<div class="controls">
-					<input type="password" id="inputPassword" class="input-small" placeholder="Account" name="password" />
-				</div><!--end of .controls-->
-				
-			</div><!--end of .control-group-->
+			if(sizeOf($users)<1){
+				echo "尚未註冊";
+				$success = false;
+			}
 			
-			<input name="submit" type="submit" value="Login"/>
+			if(@$users[0]['password'] !== md5($_POST['password'])){
+				$success = false;
+			}
 			
-		</fieldset>
-		
-	</form>	
-</body>
-</html>
+			if($success){
+				session_start();
+				$_SESSION['account'] = $_POST['account'];
+				$_SESSION['password'] = md5($_POST['password']);
+				$_SESSION['name'] = $users[0]['name'];
+				
+				/*Redirect*/
+				if(!empty($_GET['redirect']))
+				{
+					header("location:".$_GET['redirect']);
+					exit;
+				}
+				
+				header("location:order.php");
+				exit;
+			}
+		}
+	}
+	
+	include("index.tpl.php");
+?>
