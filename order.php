@@ -12,8 +12,13 @@
 	
 	if(isset($_POST['editprofile'])){
 		if(!empty($_POST['name']) AND !empty($_POST['password'])){
+			$password = $_POST['password'];
+			if(strlen($_POST['password'])!=32){
+				$password = md5($_POST['password']);
+			}
 			sql_i("UPDATE users SET name = ?, password = ? WHERE account = ?", array(
-			$_POST['name'], md5($_POST['password']), $_SESSION['account']));
+			$_POST['name'], $password, $_SESSION['account']));
+			$_SESSION['name'] = $_POST['name'];
 		}
 	}
 	
