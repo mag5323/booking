@@ -32,8 +32,10 @@
 				resizable:false				
 			});
 			
-			//日期
+			//Calendar設定
 			$('#end').datepicker({minDate: 0});
+			
+			//點擊開單或個人資訊顯示Modal form
 			$('#placeorderbtn').click(function(){
 				$('#placeorder').dialog('open');
 			});
@@ -56,6 +58,7 @@
 				var id = $(this).attr('class').split(' ');
 				var title = $(this).parent().next().text();
 				var author = $(this).parent().next().next().text();
+				//設定對話視窗的標題為訂單標題及開單人
 				$('#inorder').dialog('option','title',title + " - " + author);	
 				$('#inorder').dialog('open');	
 				$.get("inorder.php",{'OID':id[2]},
@@ -64,6 +67,7 @@
 					});
 			});
 			
+			//不是自己開的訂單無法刪除
 			$('.notmine').attr('disabled',true);
 		});
 	</script>
@@ -91,9 +95,10 @@
 		
 		<?php
 			$password = "";
-			$author = "";
+			$author = "";			
 			$myorder = "";
 			foreach($orders as $order){
+				//檢查該訂單是否為SESSION['acconut']發起的訂單,若為他人的訂單,將$myorder設為'notmine'
 				if($_SESSION['account'] !== $order['account']){
 					$myorder = "notmine";
 				}else{
@@ -105,6 +110,7 @@
 				$author = $order['author'];				
 		?>
 		<tr>
+			<!--使用$myorder內的字串作為class名稱,再將對應的按鈕disabled.-->
 			<td><button class="btn del <?php echo $order['OID']." ".$myorder;?>">Delete</button></td>
 			<td><button class="btn buy <?php echo $order['OID'];?>">Buy</button></td>
 			<td><a href="vieworder.php?OID=<?php echo $order['OID'];?>"><?php echo $order['book_title'];?></a></td>

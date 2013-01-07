@@ -36,7 +36,8 @@
 	}
 	
 	/*	isLogin()
-		檢查是否登入
+		檢查使用者是否登入
+		若尚未登入會將畫面導至登入頁面,待使用者登入後再導回剛才使用者欲瀏覽的頁面.
 		input	:$url(basename(__FILE__))
 		return	:none	*/	
 	function isLogin($url = null){		

@@ -4,4 +4,5 @@
 	unset($_SESSION['password']);
 	
 	header('location:index.php');
+	exit;
 ?>

@@ -19,6 +19,7 @@
 				resizable:false
 			});
 			
+			//點擊註冊後跳出註冊表單
 			$('#signupbt').click(function(){
 				$('#signup').dialog('open');
 			});
@@ -28,6 +29,7 @@
 </head>
 
 <body>	
+	<!--登入後將使用者導回登入前正在瀏覽之頁面-->
 	<form method="post" class="form-horizontal" action="index.php?redirect=<?php echo @$_GET['redirect'];?>">
 
 		<fieldset>
