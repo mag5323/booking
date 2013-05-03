@@ -6,7 +6,7 @@
 
 <?php
 	try	{
-		$dbh = new PDO('mysql:host=localhost; dbname=booking','root','yourpassword');
+		$dbh = new PDO('mysql:host=YOURHOST; dbname=booking','root','YOURPASSWORD');
 		$dbh -> query("SET NAMES utf8");
 	} 
 	
