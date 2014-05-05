@@ -2,19 +2,11 @@
 	display: none;
 }
 
-.small{
-	width: 600px;
-	margin-left: 90px;	
-}
-
-.big{
-	width: 1100px;
-	margin: 0px auto;
+#navibg{
+	background: skyblue;
 }
 
 #navi{	
-	display: block;
-	background: skyblue;
 	height: 40px;
 }
 
@@ -22,7 +14,6 @@
 	float: left;
 	padding: 5px;
 	margin: 5px;
-	
 }
 
 #navi a{
@@ -31,14 +22,15 @@
 	font-weight: bold;
 }
 
-p.hello{
-	margin-left: 820px;
+#hello{
+	margin-top: -30px;
+	text-align: right;
 }
 
-h3{
-	margin-left: 90px;	
+.push-md{
+	margin-top: 30px;
 }
 
-.controls input{
-	height: 30px;
+.push-lg{
+	margin-top: 60px;
 }

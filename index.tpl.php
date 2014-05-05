@@ -5,12 +5,12 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 	<link type="text/css" rel="stylesheet" media="screen" href="reset.css" />
-	<link type="text/css" rel="stylesheet" media="screen" href="bootstrap/css/bootstrap.css" />
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<link type="text/css" rel="stylesheet" media="screen" href="style.css" />
 	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" type="text/css" />
 	<title>Booking System</title>
 	
-	<script type="text/javascript">
+	<script>
 		$(document).ready(function(){
 			//ModalForm設定
 			$('#signup').dialog({
@@ -29,48 +29,61 @@
 </head>
 
 <body>	
+	<div class="container-fluid">
+	
+	<div class="push-lg"></div>
+	<div class="row">
 	<!--登入後將使用者導回登入前正在瀏覽之頁面-->
-	<form method="post" class="form-horizontal" action="index.php?redirect=<?php echo @$_GET['redirect'];?>">
+	
+	<div class="col-md-5"></div>
+	
+	<div class="col-md-2">
+	<form method="post" role="form" action="index.php?redirect=<?php echo @$_GET['redirect'];?>">
 
 		<fieldset>
 			<legend>Login</legend>			
-			<div class="control-group">
-				<label  class="control-label" for="account">學號</label>	
-				<div class="controls">				
-					<input type="text" placeholder="SID" name="account" />						
-				</div>
+			<div class="form-group">
+				<label for="account">學號</label>	
+				<input type="text" class="form-control" placeholder="SID" name="account" />		
 			</div>
 			
-			<div class="control-group">
-				<label  class="control-label" for="password">密碼</label>
-				<div class="controls">				
-					<input type="password" placeholder="Password" name="password" />
-				</div>
+			<div class="form-group">
+				<label for="password">密碼</label>
+				<input type="password" class="form-control" placeholder="Password" name="password" />
 			</div>
 			
-			<div class="control-group">
-				<div class="controls">
-					<input type="submit" class="btn" value="Login" name="login"/>
-					<input type="button" class="btn" id="signupbt" value="Sign up"/>			
-				</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-default" value="Login" name="login"/>
+				<input type="button" class="btn btn-default" id="signupbt" value="Sign up"/>		
 			</div>
 		</fieldset>		
 	</form>	
+	</div>
+	<div class="col-md-5"></div>
 	
 	<div id="signup" class="disappear" title="Sign Up">
-		<form method="post" action="index.php">
-		
-			<label for="account">帳號</label>		
-			<input type="text" placeholder="s0000000" name="account" />	
+		<form method="post" role="form" action="index.php">
 			
-			<label for="password">密碼</label>
-			<input type="password" placeholder="Password" name="password" />
+			<div class="form-group">
+				<label for="account">帳號</label>		
+				<input type="text" class="form-control" placeholder="s0000000" name="account" />	
+			</div>
 			
-			<label for="name">姓名</label>
-			<input type="text" placeholder="Name" name="name" />
+			<div class="form-group">
+				<label for="password">密碼</label>
+				<input type="password" class="form-control" placeholder="Password" name="password" />
+			</div>
 			
-			<input type="submit" class="btn" name="signup" value="Submit" />
+			<div class="form-group">
+				<label for="name">姓名</label>
+				<input type="text" class="form-control" placeholder="Name" name="name" />
+			</div>
+			
+			<input type="submit" class="btn btn-default" name="signup" value="Submit" />
 		</form>
 	</div><!--end of #signup-->
+	
+	</div><!--end of .row-->
+	</div><!--end of .container-fluid-->
 </body>
 </html>
